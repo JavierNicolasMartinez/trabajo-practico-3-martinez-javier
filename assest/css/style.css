@@ -6,3 +6,7 @@
 .page-body {
     background-color: #000000 ;
 }
+
+#btn-buscar{
+    justify-self: center;
+}
