@@ -31,11 +31,39 @@ const verPersonajes = async (id) => {
 
         const data = await response.json();
 
-        alert(data.description);
-    } catch (error) {
-        console.error(error);
-    }
+        // agregar modal 
+        const modalBody = document.getElementById("modalDetalleBody");
+    modalBody.innerHTML = `
+    <div class="text-center mb-3">
+        <img src="${data.image}" alt="${data.name}" class="img-fluid" style="max-height: 200px;">
+    </div>
+    <p><strong>Nombre:</strong> ${data.name}</p>
+    <p><strong>Raza:</strong> ${data.race}</p>
+    <p><strong>Género:</strong> ${data.gender}</p>
+    <p><strong>Descripción:</strong> ${data.description}</p>
+    `;
+// Crear y mostrar el modal usando la API de Bootstrap
+    const myModal = new bootstrap.Modal(document.getElementById("modalDetalles"));
+    myModal.show();
+} catch (error) {
+    console.error(error);
+    alert("Ocurrió un error al obtener los detalles del personaje");
+}
 };
+// alert(data.description);
+// }catch (error) {
+//         console.error(error);
+// };
+
+// // Función para renderizar las tarjetas de personajes
+// const renderizarPersonajes = (personajes) => {
+// padre.innerHTML = "";
+// if (personajes.length === 0) {
+//     padre.innerHTML = `<p class="text-center">No se encontraron resultados.</p>`;
+//     return;
+// }
+
+
 //Para cargar de la API de dragón Ball - ver si funciona
 btnBuscar.addEventListener("click", async () => {
     const data = await validacion(urlDragonBall);
@@ -66,7 +94,7 @@ dataPersonajes.forEach((personaje) => {
                     </div>
                 </div>
         `;
-        
+    
     });
 });
 
