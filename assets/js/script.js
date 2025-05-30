@@ -1,6 +1,7 @@
 const btnBuscar = document.getElementById("btn-buscar");
 const urlDragonBall = "https://dragonball-api.com/api/characters";
 const padre = document.getElementById("contenedor-data");
+const formBuscador = document.getElementById("form-buscador");
 
 //punto 2 de validación
 const validacion = async (url) => {
@@ -38,7 +39,7 @@ const verPersonajes = async (id) => {
 //Para cargar de la API de dragón Ball - ver si funciona
 btnBuscar.addEventListener("click", async () => {
     const data = await validacion(urlDragonBall);
-    const dataPersonajes = data.items;
+    const dataPersonajes = data.items || data;
 
     //agregado de limpieza
     padre.innerHTML = "";
@@ -81,3 +82,39 @@ padre.addEventListener("click", (e) => {
     }    
 });
     
+formBuscador.addEventListener("submit", async(event)=> {
+    event.preventDefault();
+    const query = document.getElementById("buscador").value.trim();
+    try {
+        const response = await fetch (`${urlDragonBall}?name=${encodeURIComponent(query)}`);
+        if (!response.ok) {
+            throw new Error("Error en la API");
+        }
+        const data = await response.json();
+        const personajes = data.items || data;
+        padre.innerHTML = "";
+
+        personajes.forEach(personaje => {
+            padre.innerHTML=`
+            <div class="col-md-3 mb-4">
+                    <div class="card h-100 bg-secondary text-warning">
+                        <img src=${personaje.image} class="card-img-top" alt="personaje de Dragón Ball">
+                        <div class="card-body ">
+                            <h5 class="card-title">${personaje.name}</h5>
+                            <p class="card-text">${personaje.race} - ${personaje.gender}</p>
+                        </div>
+                        <div class= "px-3 pb-3">
+                            <button class="btn btn-dark btn-ver-detalles">Ver detalles</button>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-body-secondary">Este es un personaje mostrado desde la API</small>
+                        </div>
+                    </div>
+                </div>`
+        });
+    }catch (error) {
+        console.error(error);
+        alert("Ocurrio un error al consultar la API")
+    }
+
+});
