@@ -2,6 +2,9 @@ const btnBuscar = document.getElementById("btn-buscar");
 const urlDragonBall = "https://dragonball-api.com/api/characters";
 const padre = document.getElementById("contenedor-data");
 const formBuscador = document.getElementById("form-buscador");
+let personajes = [];
+
+
 
 //punto 2 de validación
 const validacion = async (url) => {
@@ -50,18 +53,7 @@ const verPersonajes = async (id) => {
     alert("Ocurrió un error al obtener los detalles del personaje");
 }
 };
-// alert(data.description);
-// }catch (error) {
-//         console.error(error);
-// };
 
-// // Función para renderizar las tarjetas de personajes
-// const renderizarPersonajes = (personajes) => {
-// padre.innerHTML = "";
-// if (personajes.length === 0) {
-//     padre.innerHTML = `<p class="text-center">No se encontraron resultados.</p>`;
-//     return;
-// }
 
 
 //Para cargar de la API de dragón Ball - ver si funciona
@@ -74,9 +66,9 @@ btnBuscar.addEventListener("click", async () => {
 
     // console.log(dataPersonajes);
 
-    // const fila = document.getElementById("Fila-personajes")
-
 dataPersonajes.forEach((personaje) => {
+    personajes.push(personaje);
+    console.log(personajes);
         padre.innerHTML += `
         <div class="col-md-3 mb-4">
                     <div class="card h-100 bg-secondary text-warning">
@@ -104,10 +96,6 @@ padre.addEventListener("click", (e) => {
     if (e.target.classList.contains("btn-ver-detalles")) {
         const id = e.target.getAttribute("data-id");
         verPersonajes(id);
-        // const cardPadre = e.target.closest(".col-3");
-        // const id = cardPadre.dataset.id;
-
-        // verDetalles(id);
 
     }    
 });
