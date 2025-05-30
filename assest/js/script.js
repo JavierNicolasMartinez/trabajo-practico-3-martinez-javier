@@ -41,11 +41,11 @@ btnBuscar.addEventListener("click", async () => {
 
     console.log(dataPersonajes);
 
+    const fila = document.getElementById("Fila-personajes")
+
 dataPersonajes.forEach((personaje) => {
         padre.innerHTML += `
-        <div class="container text-center mt-4 p-2">
-               <div class="row row-cols-1 row-cols-md-4 g-4 justify-content-center">
-                <div class="col">
+        <div class="col-md-3 mb-4">
                     <div class="card h-100 bg-secondary text-warning">
                         <img src=${personaje.image} class="card-img-top" alt="personaje de Dragón Ball">
                         <div class="card-body ">
@@ -67,10 +67,12 @@ dataPersonajes.forEach((personaje) => {
 
 padre.addEventListener("click", (e) => {
     if (e.target.classList.contains("btn-ver-detalles")) {
-        const cardPadre = e.target.closest(".col-3");
-        const id = cardPadre.dataset.id;
+        const id = e.target.getAttribute("data-id");
+        verPersonajes(id);
+        // const cardPadre = e.target.closest(".col-3");
+        // const id = cardPadre.dataset.id;
 
-        verDetalles(id);
+        // verDetalles(id);
 
     }    
 });
