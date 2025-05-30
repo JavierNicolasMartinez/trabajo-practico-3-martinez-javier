@@ -8,14 +8,15 @@ const validacion = async (url) => {
         const response = await fetch(url);
 
         if (!response.ok) {
-            throw new error("Error en la API");
+            throw new Error("Error en la API");
         }
 
         const data = await response.json();
 
         return data;
     }catch (error) {
-        console.log(error);
+        console.error(error);
+        //ver si hay errores de console.log
     }
 };
 
@@ -24,24 +25,27 @@ const verPersonajes = async (id) => {
         const response = await fetch(`${urlDragonBall}/${id}`);
 
         if (!response.ok) {
-            throw new error("Error en la API");
+            throw new Error("Error en la API");
         }
 
         const data = await response.json();
 
         alert(data.description);
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 };
-//Para cargar de la API de dragón Ball
+//Para cargar de la API de dragón Ball - ver si funciona
 btnBuscar.addEventListener("click", async () => {
     const data = await validacion(urlDragonBall);
     const dataPersonajes = data.items;
 
-    console.log(dataPersonajes);
+    //agregado de limpieza
+    padre.innerHTML = "";
 
-    const fila = document.getElementById("Fila-personajes")
+    // console.log(dataPersonajes);
+
+    // const fila = document.getElementById("Fila-personajes")
 
 dataPersonajes.forEach((personaje) => {
         padre.innerHTML += `
@@ -52,7 +56,7 @@ dataPersonajes.forEach((personaje) => {
                             <h5 class="card-title">${personaje.name}</h5>
                             <p class="card-text">${personaje.race} - ${personaje.gender}</p>
                         </div>
-                        <div>
+                        <div class= "px-3 pb-3">
                             <button class="btn btn-dark btn-ver-detalles">Ver detalles</button>
                         </div>
                         <div class="card-footer">
