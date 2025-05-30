@@ -82,11 +82,11 @@ dataPersonajes.forEach((personaje) => {
                     <div class="card h-100 bg-secondary text-warning">
                         <img src=${personaje.image} class="card-img-top" alt="personaje de Dragón Ball">
                         <div class="card-body ">
-                            <h5 class="card-title">${personaje.name}</h5>
-                            <p class="card-text">${personaje.race} - ${personaje.gender}</p>
+                            <h5 class="card-title text-center">${personaje.name}</h5>
+                            <p class="card-text text-center">${personaje.race} - ${personaje.gender}</p>
                         </div>
-                        <div class= "px-3 pb-3">
-                            <button data-id="${personaje.id}" class="btn btn-dark btn-ver-detalles">Ver detalles</button>
+                        <div class= "d-flex justify-content-center px-3 pb-3">
+                            <button data-id="${personaje.id}" class="btn btn-dark btn-ver-detalles text-center">Ver detalles</button>
                         </div>
                         <div class="card-footer">
                             <small class="text-body-secondary">Este es un personaje mostrado desde la API</small>
@@ -130,11 +130,11 @@ formBuscador.addEventListener("submit", async(event)=> {
                     <div class="card h-100 bg-secondary text-warning">
                         <img src=${personaje.image} class="card-img-top" alt="personaje de Dragón Ball">
                         <div class="card-body ">
-                            <h5 class="card-title">${personaje.name}</h5>
-                            <p class="card-text">${personaje.race} - ${personaje.gender}</p>
+                            <h5 class="card-title text-center">${personaje.name}</h5>
+                            <p class="card-text text-center">${personaje.race} - ${personaje.gender}</p>
                         </div>
-                        <div class= "px-3 pb-3">
-                            <button data-id="${personaje.id}" class="btn btn-dark btn-ver-detalles">Ver detalles</button>
+                        <div class= "d-flex justify-content-center px-3 pb-3">
+                            <button data-id="${personaje.id}" class="btn btn-dark btn-ver-detalles text-center">Ver detalles</button>
                         </div>
                         <div class="card-footer">
                             <small class="text-body-secondary">Este es un personaje mostrado desde la API</small>
