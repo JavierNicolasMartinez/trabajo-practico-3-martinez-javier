@@ -86,7 +86,7 @@ dataPersonajes.forEach((personaje) => {
                             <p class="card-text">${personaje.race} - ${personaje.gender}</p>
                         </div>
                         <div class= "px-3 pb-3">
-                            <button class="btn btn-dark btn-ver-detalles">Ver detalles</button>
+                            <button data-id="${personaje.id}" class="btn btn-dark btn-ver-detalles">Ver detalles</button>
                         </div>
                         <div class="card-footer">
                             <small class="text-body-secondary">Este es un personaje mostrado desde la API</small>
@@ -97,6 +97,8 @@ dataPersonajes.forEach((personaje) => {
     
     });
 });
+
+// Delegación de eventos: Detectar clicks en "Ver detalles" y activar el modal
 
 padre.addEventListener("click", (e) => {
     if (e.target.classList.contains("btn-ver-detalles")) {
@@ -123,7 +125,7 @@ formBuscador.addEventListener("submit", async(event)=> {
         padre.innerHTML = "";
 
         personajes.forEach(personaje => {
-            padre.innerHTML=`
+            padre.innerHTML +=`
             <div class="col-md-3 mb-4">
                     <div class="card h-100 bg-secondary text-warning">
                         <img src=${personaje.image} class="card-img-top" alt="personaje de Dragón Ball">
@@ -132,7 +134,7 @@ formBuscador.addEventListener("submit", async(event)=> {
                             <p class="card-text">${personaje.race} - ${personaje.gender}</p>
                         </div>
                         <div class= "px-3 pb-3">
-                            <button class="btn btn-dark btn-ver-detalles">Ver detalles</button>
+                            <button data-id="${personaje.id}" class="btn btn-dark btn-ver-detalles">Ver detalles</button>
                         </div>
                         <div class="card-footer">
                             <small class="text-body-secondary">Este es un personaje mostrado desde la API</small>
